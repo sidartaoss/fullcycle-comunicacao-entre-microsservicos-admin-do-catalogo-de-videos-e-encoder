@@ -205,6 +205,23 @@ c. Incluir o _Bean_ _rabbitListenerContainerFactory_ para configurar o conversor
     }
 ```
 
+- No record _infrastructure/src/main/java/com/fullcycle/admin/catalogo/infrastructure/video/models/VideoEncoderCompleted.java_:
+
+Alterar os atributos conforme:
+
+```
+@JsonTypeName("COMPLETED")
+public record VideoEncoderCompleted(
+        @JsonProperty("job_id") String id,
+        @JsonProperty("output_bucket_path") String outputBucket,
+        @JsonProperty("video") VideoMetadata video,
+        @JsonProperty("Error") String error,
+        @JsonProperty("created_at") Instant createdAt,
+        @JsonProperty("updated_at") Instant updatedAt
+
+        ) implements VideoEncoderResult {
+```
+
 - Na classe _infrastructure/src/main/java/com/fullcycle/admin/catalogo/infrastructure/amqp/VideoEncoderListener.java_:
 
 Alterar o método _onVideoEncodedMessage_ conforme:
